@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Comunidade Rio da Casca | Natureza e História</title>
+    <style>
+        /* --- CONFIGURAÇÕES GERAIS --- */
+        :root {
+            --primary-color: #2e5c38; /* Verde Floresta */
+            --secondary-color: #d2691e; /* Terracota/Solo */
+            --bg-light: #f9f9f7; /* Bege claro */
+            --text-dark: #1a1a1a;
+            --text-light: #f0f0f0;
+            --card-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-light);
+            color: var(--text-dark);
+            line-height: 1.6;
+        }
+
+        h1, h2, h3 {
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* --- BOTÕES --- */
+        .btn {
+            display: inline-block;
+            padding: 15px 30px;
+            background-color: var(--secondary-color);
+            color: white;
+            border-radius: 8px;
+            font-weight: bold;
+            transition: transform 0.2s, background-color 0.2s;
+            cursor: pointer;
+            border: none;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+        }
+
+        .btn:hover {
+            background-color: #b0500e;
+            transform: translateY(-2px);
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            border: 2px solid var(--primary-color);
+            color: var(--primary-color);
+        }
+
+        .btn-outline:hover {
+            background-color: var(--primary-color);
+            color: white;
+        }
+
+        /* --- HERO SECTION (TOPO) --- */
+        header {
+            /* Imagem de fundo genérica de natureza - Substituir pela foto real da Casca */
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://images.unsplash.com/photo-1469474968028-56623f02e42e?ixlib=rb-1.2.1&auto=format&fit=crop&w=1953&q=80');
+            background-size: cover;
+            background-position: center;
+            height: 90vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+        }
+
+        header h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+
+        header p {
+            font-size: 1.25rem;
+            max-width: 800px;
+            margin: 0 auto 40px auto;
+            opacity: 0.9;
+        }
+
+        .social-proof {
+            margin-top: 20px;
+            font-size: 0.9rem;
+            color: #ddd;
+        }
+
+        /* --- SEÇÕES PADRÃO --- */
+        section {
+            padding: 80px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+        }
+
+        .section-title p {
+            max-width: 700px;
+            margin: 0 auto;
+            color: #666;
+        }
+
+        /* --- GRID DE RECURSOS (Radar de Experiências) --- */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+        }
+
+        .feature-card {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: var(--card-shadow);
+            border-left: 5px solid var(--primary-color);
+            transition: transform 0.3s;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .feature-card h3 {
+            color: var(--primary-color);
+        }
+
+        /* --- LISTA DE ATRAÇÕES (Ferramentas) --- */
+        .attractions-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .attraction-item {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+            border: 1px solid #eee;
+        }
+
+        .icon-box {
+            background-color: var(--secondary-color);
+            color: white;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            font-weight: bold;
+            flex-shrink: 0;
+        }
+
+        /* --- MENTOR / QUEM MANTÉM --- */
+        .mentor-section {
+            background-color: #fff;
+        }
+
+        .mentor-content {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 40px;
+        }
+
+        .mentor-image {
+            flex: 1;
+            min-width: 300px;
+            height: 400px;
+            /* Placeholder para foto da comunidade */
+            background-color: #ddd; 
+            background-image: url('https://images.unsplash.com/photo-1544979590-37e9b47cd25a?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80');
+            background-size: cover;
+            border-radius: 12px;
+        }
+
+        .mentor-text {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        /* --- PREÇOS / OFERTA --- */
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .price-card {
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: var(--card-shadow);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .price-card.featured {
+            border: 2px solid var(--secondary-color);
+        }
+
+        .featured-tag {
+            background-color: var(--secondary-color);
+            color: white;
+            padding: 5px 30px;
+            position: absolute;
+            top: 20px;
+            right: -30px;
+            transform: rotate(45deg);
+            font-size: 0.8rem;
+        }
+
+        .price {
+            font-size: 3rem;
+            font-weight: bold;
+            color: var(--text-dark);
+            margin: 20px 0;
+        }
+
+        .price span {
+            font-size: 1rem;
+            color: #666;
+            font-weight: normal;
+        }
+
+        .price-list {
+            list-style: none;
+            text-align: left;
+            margin: 20px 0 40px 0;
+        }
+
+        .price-list li {
+            padding: 10px 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        /* --- FAQ --- */
+        .faq-item {
+            background: white;
+            margin-bottom: 15px;
+            padding: 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+
+        .faq-item h4 {
+            display: flex;
+            justify-content: space-between;
+            color: var(--primary-color);
+        }
+
+        /* --- FOOTER --- */
+        footer {
+            background-color: #1a1a1a;
+            color: white;
+            padding: 60px 0 20px 0;
+            text-align: center;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .footer-links a {
+            color: #ccc;
+        }
+
+        .footer-links a:hover {
+            color: white;
+        }
+
+        /* --- RESPONSIVIDADE --- */
+        @media (max-width: 768px) {
+            header h1 { font-size: 2rem; }
+            header p { font-size: 1rem; }
+            .mentor-content { flex-direction: column; }
+            .mentor-image { width: 100%; height: 250px; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container">
+            <h1>Vivencie a História e a Natureza de<br>Chapada dos Guimarães sem Filtros</h1>
+            <p>O turismo de massa te vende fotos em mirantes lotados. Aqui, você mergulha na verdadeira essência, onde a primeira luz de Cuiabá acendeu e a natureza permanece intocada.</p>
+            <a href="https://wa.me/5565996388937" class="btn">Agendar minha visita</a>
+            <div class="social-proof">
+                ⭐⭐⭐⭐⭐ +2.000 visitantes e preservadores vivendo a história real.
+            </div>
+        </div>
+    </header>
+
+    <section id="radar">
+        <div class="container">
+            <div class="section-title">
+                <h2>Seu refúgio estratégico na natureza</h2>
+                <p>Enquanto outros se perdem no ruído das rotas comerciais, a Comunidade Rio da Casca funciona como seu portal para o passado e para a preservação.</p>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <h3>Preservação Real</h3>
+                    <p>Conservamos ruínas históricas e mata nativa, não apenas cenários para fotos. Aqui a sustentabilidade é prática diária, não discurso de marketing.</p>
+                </div>
+                <div class="feature-card">
+                    <h3>Conexão Genuína</h3>
+                    <p>Interaja com a comunidade local e as famílias que construíram a história da região. Histórias que não estão nos guias turísticos.</p>
+                </div>
+                <div class="feature-card">
+                    <h3>História Viva</h3>
+                    <p>Domine os pilares do nosso patrimônio — a Usina Casca I e o Chalé dos Governadores — transformando o passeio em uma aula de cultura.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="atracoes" style="background-color: white;">
+        <div class="container">
+            <div class="section-title">
+                <h2>O que você vai encontrar</h2>
+                <p>Atrações que definem a identidade de Mato Grosso, sem perder tempo com roteiros artificiais.</p>
+            </div>
+            
+            <div class="attractions-list">
+                <div class="attraction-item">
+                    <div class="icon-box">01</div>
+                    <div>
+                        <h4>Usina Casca I</h4>
+                        <p>O "código-fonte" da energia. Ruínas da primeira hidrelétrica de Cuiabá (1928).</p>
+                    </div>
+                </div>
+                <div class="attraction-item">
+                    <div class="icon-box">02</div>
+                    <div>
+                        <h4>Cachoeira do Cascaú</h4>
+                        <p>Hidromassagem natural em leito de pedras e água cristalina.</p>
+                    </div>
+                </div>
+                <div class="attraction-item">
+                    <div class="icon-box">03</div>
+                    <div>
+                        <h4>Chalé dos Governadores</h4>
+                        <p>Arquitetura colonial onde decisões políticas históricas foram tomadas.</p>
+                    </div>
+                </div>
+                <div class="attraction-item">
+                    <div class="icon-box">04</div>
+                    <div>
+                        <h4>Trilhas Ecológicas</h4>
+                        <p>Caminhos seguros para observar biodiversidade e pássaros raros.</p>
+                    </div>
+                </div>
+                <div class="attraction-item">
+                    <div class="icon-box">05</div>
+                    <div>
+                        <h4>Agricultura Familiar</h4>
+                        <p>Consuma produtos cultivados pela própria comunidade local.</p>
+                    </div>
+                </div>
+                <div class="attraction-item">
+                    <div class="icon-box">06</div>
+                    <div>
+                        <h4>Canal Casca</h4>
+                        <p>Acervo histórico audiovisual das famílias pioneiras.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="mentor-section">
+        <div class="container">
+            <div class="mentor-content">
+                <div class="mentor-image"></div>
+                <div class="mentor-text">
+                    <h2>Quem mantém a história viva?</h2>
+                    <h3 style="color: var(--secondary-color);">Famílias Tradicionais & Guardiões</h3>
+                    <p>Com décadas de presença na região, a Comunidade Rio da Casca é formada por descendentes e novos moradores unidos pelo amor à terra.</p>
+                    <br>
+                    <p><strong>A Missão:</strong> Traduzir a vasta riqueza histórica em experiências acessíveis. Eles mapeiam as trilhas, cuidam das ruínas e recebem visitantes como parte da família.</p>
+                    <br>
+                    <p><em>Não são guias terceirizados. São as pessoas que vivem o que preservam.</em></p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="oferta">
+        <div class="container">
+            <div class="section-title">
+                <h2>Contribua e faça parte da preservação</h2>
+                <p>Valores simbólicos para manter viva a história que iluminou Mato Grosso.</p>
+            </div>
+
+            <div class="pricing-grid">
+                <div class="price-card">
+                    <h3>Day-Use Visitação</h3>
+                    <div class="price">R$ 50<span>/pessoa</span></div>
+                    <ul class="price-list">
+                        <li>✅ Acesso às trilhas ecológicas</li>
+                        <li>✅ Banho na Cachoeira do Cascaú</li>
+                        <li>✅ Visita às Ruínas da Usina</li>
+                        <li>✅ Área de piquenique</li>
+                    </ul>
+                    <a href="https://wa.me/5565996388937?text=Quero%20agendar%20um%20Day-Use" class="btn btn-outline">Agendar Visita</a>
+                </div>
+
+                <div class="price-card featured">
+                    <div class="featured-tag">RECOMENDADO</div>
+                    <h3>Amigo da Casca</h3>
+                    <div class="price">R$ 250<span>/ano</span></div>
+                    <ul class="price-list">
+                        <li>✅ <strong>Acesso ilimitado</strong> (com agendamento)</li>
+                        <li>✅ Convite para eventos exclusivos</li>
+                        <li>✅ Descontos em produtos locais</li>
+                        <li>✅ Apoio direto à preservação</li>
+                    </ul>
+                    <a href="https://wa.me/5565996388937?text=Quero%20ser%20Amigo%20da%20Casca" class="btn">Tornar-se Membro</a>
+                </div>
+            </div>
+            
+            <p style="text-align: center; margin-top: 30px; font-size: 0.9rem;">
+                *Valores sugeridos para manutenção do espaço. Consulte condições para grupos.
+            </p>
+        </div>
+    </section>
+
+    <section id="faq" style="background-color: white;">
+        <div class="container">
+            <div class="section-title">
+                <h2>Perguntas Frequentes</h2>
+            </div>
+            <div style="max-width: 800px; margin: 0 auto;">
+                <div class="faq-item">
+                    <h4>Não tenho preparo físico, a visita é para mim?</h4>
+                    <p>Sim! Temos opções de lazer acessíveis e trilhas leves para quem quer apenas relaxar ao som das águas.</p>
+                </div>
+                <div class="faq-item">
+                    <h4>É seguro para crianças e idosos?</h4>
+                    <p>Absolutamente. Nossa comunidade é familiar e o ambiente é monitorado para garantir a segurança de todas as idades.</p>
+                </div>
+                <div class="faq-item">
+                    <h4>Preciso agendar com antecedência?</h4>
+                    <p>Sim. Para garantir a preservação e evitar superlotação, limitamos o número de visitantes diários.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-links">
+                <a href="#">Nossa História</a>
+                <a href="#">Canal Casca</a>
+                <a href="#">Visitação</a>
+                <a href="#">Transparência</a>
+            </div>
+            <p>© 2025 Comunidade Rio da Casca. Todos os direitos reservados.</p>
+            <p style="font-size: 0.8rem; color: #666; margin-top: 10px;">Chapada dos Guimarães - MT, Zona Rural</p>
+        </div>
+    </footer>
+
+</body>
+</html>
